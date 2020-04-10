@@ -115,6 +115,7 @@ class PostController extends Controller
     {
         DB::beginTransaction();
         try {
+            $this->postValidator->setId($id);
             $this->postValidator->with($request->all())->passesOrFail(BaseValidatorInterface::RULE_UPDATE);
 
             $user = JWTAuth::parseToken()->authenticate();
